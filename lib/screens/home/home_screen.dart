@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jaitjait/models/Article.dart';
+import 'package:flutter_jaitjait/models/Category.dart';
+import 'package:flutter_jaitjait/models/RecommendTailor.dart';
 import 'package:flutter_jaitjait/screens/constants.dart';
 import 'package:flutter_jaitjait/screens/home/components/appbar.dart';
 
@@ -44,11 +47,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     //buat avatar tailor
+
                     Container(
                       padding: EdgeInsets.only(left: 10, right: 10),
                       height: 90,
                       child: ListView.builder(
-                        itemCount: 10,
+                        itemCount: listTailors.length,
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
@@ -56,22 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.all(10),
                             child: Column(
                               children: [
-                                Material(
-                                  elevation: 0,
-                                  shape: CircleBorder(),
-                                  clipBehavior: Clip.hardEdge,
-                                  color: Colors.transparent,
-                                  child: Ink.image(
-                                    image:
-                                        AssetImage("assets/images/avatar1.jpg"),
-                                    fit: BoxFit.cover,
-                                    width: 60,
-                                    height: 60,
-                                    child: InkWell(
-                                      onTap: () {},
-                                    ),
-                                  ),
-                                ),
+                                getListTailor(listTailors[index]),
                               ],
                             ),
                           );
@@ -94,25 +83,79 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Container(
+                      padding: const EdgeInsets.only(
+                        left: 10,
+                        right: 10,
+                        top: 10,
+                      ),
                       height: 150,
-                      padding: const EdgeInsets.all(10),
-                      child: ListView(
+                      child: ListView.builder(
+                        itemCount: listTailors.length,
+                        shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
-                        children: getServiceCategories(),
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              getListCategory(listCategory[index]),
+                            ],
+                          );
+                        },
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: defaultPadding),
-                      child: Text(
-                        "Artikel Populer",
-                        style: TextStyle(
-                          fontStyle: FontStyle.normal,
-                          fontFamily: "Open Sans",
-                          fontWeight: FontWeight.w500,
-                          fontSize: 24,
-                          color: textColor,
-                        ),
-                        textAlign: TextAlign.left,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: defaultPadding),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "Artikel Populer",
+                                style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontFamily: "Open Sans",
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 24,
+                                  color: textColor,
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                              Row(
+                                children: [
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: const Text(
+                                      "See all",
+                                      style: TextStyle(
+                                        fontFamily: "Open Sans",
+                                        color: Colors.black38,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(
+                        left: 10,
+                        right: 10,
+                      ),
+                      alignment: Alignment.topCenter,
+                      height: 275,
+                      child: ListView.builder(
+                        itemCount: listTitles.length,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                            onTap: () {},
+                            child: getListArticle(listTitles[index]),
+                          );
+                        },
                       ),
                     ),
                   ],
@@ -125,27 +168,27 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  List<String> serviceCategories = [
-    "Modiste",
-    "Tailor",
-    "Brand Owner",
-    "Repair",
-    "Design",
-    "Shops"
-  ];
+  Widget getListTailor(RecommendedTailor item) {
+    return Material(
+      elevation: 0,
+      shape: CircleBorder(),
+      clipBehavior: Clip.hardEdge,
+      color: Colors.transparent,
+      child: Ink.image(
+        image: AssetImage(item.imgUrl),
+        fit: BoxFit.cover,
+        width: 60,
+        height: 60,
+        child: InkWell(
+          onTap: () {},
+        ),
+      ),
+    );
+  }
 
-  Map serviceCatToIcon = {
-    "Modiste": Image.asset("assets/icons/Modiste.png", width: 70),
-    "Tailor": Image.asset("assets/icons/Tailor.png", width: 70),
-    "Brand Owner": Image.asset("assets/icons/Konveksi.png", width: 70),
-    "Repair": Image.asset("assets/icons/Repair.png", width: 70),
-    "Design": Image.asset("assets/icons/Design.png", width: 70),
-    "Shops": Image.asset("assets/icons/Shops.png", width: 70),
-  };
-
-  Widget getCategoryContainer(String categoryName) {
+  Widget getListCategory(Category cat) {
     return Container(
-      margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(12),
       height: 100,
       width: 100,
       padding: const EdgeInsets.all(5),
@@ -166,42 +209,101 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 70,
             width: 70,
             child: IconButton(
-              icon: serviceCatToIcon[categoryName],
+              icon: Image.asset(cat.icon),
               onPressed: () {},
             ),
           ),
           // const Padding(padding: EdgeInsets.all(1)),
-          Text(categoryName, style: titleStyleLighterBlack),
+          Text(cat.title, style: titleStyleLighterBlack),
         ],
       ),
     );
   }
 
-  List<Widget> getServiceCategories() {
-    List<Widget> serviceCategoriesCards = [];
-    List<Widget> rows = [];
-    int i = 0;
-    for (String category in serviceCategories) {
-      if (i < 2) {
-        rows.add(getCategoryContainer(category));
-        i++;
-      } else {
-        i = 0;
-        serviceCategoriesCards.add(Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: rows,
-        ));
-        rows = [];
-        rows.add(getCategoryContainer(category));
-        i++;
-      }
-    }
-    if (rows.length > 0) {
-      serviceCategoriesCards.add(Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: rows,
-      ));
-    }
-    return serviceCategoriesCards;
+  Widget getListArticle(ListArticle art) {
+    return Card(
+      elevation: 0,
+      margin: const EdgeInsets.only(bottom: 20),
+      child: Padding(
+        padding: EdgeInsets.all(10),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        art.author,
+                        style: const TextStyle(
+                            fontSize: 12,
+                            color: primaryColor,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        art.timeRead,
+                        style: const TextStyle(
+                          fontSize: 9,
+                          color: Colors.black38,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        art.date,
+                        style: const TextStyle(
+                          fontSize: 9,
+                          color: Colors.black38,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    art.newsTitle,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: textColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    art.subTitle,
+                    style: const TextStyle(
+                      fontSize: 9,
+                      color: Colors.black38,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 10),
+            Container(
+              alignment: Alignment.centerRight,
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(art.imgUrl),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.transparent,
+                    blurRadius: 7,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

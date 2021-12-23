@@ -1,14 +1,14 @@
 class RecommendedTailor {
-  final String images;
+  String imgUrl;
 
-  const RecommendedTailor({required this.images});
+  RecommendedTailor(this.imgUrl);
 }
 
-const List<RecommendedTailor> demo_recommended_tailor = [
-  RecommendedTailor(images: "assets/images/avatar1.jpg"),
-  RecommendedTailor(images: "assets/images/avatar2.jpg"),
-  RecommendedTailor(images: "assets/images/avatar3.jpg"),
-  RecommendedTailor(images: "assets/images/avatar4.jpg"),
-  RecommendedTailor(images: "assets/images/avatar6.jpg"),
-  RecommendedTailor(images: "assets/images/avatar7.jpg"),
+List<RecommendedTailor> listTailors = [
+  RecommendedTailor("assets/images/avatar1.jpg"),
+  RecommendedTailor("assets/images/avatar2.jpg"),
+  RecommendedTailor("assets/images/avatar3.jpg"),
+  RecommendedTailor("assets/images/avatar4.jpg"),
+  RecommendedTailor("assets/images/avatar6.jpg"),
+  RecommendedTailor("assets/images/avatar7.jpg"),
 ];

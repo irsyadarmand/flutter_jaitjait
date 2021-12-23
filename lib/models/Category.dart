@@ -1,14 +1,14 @@
 class Category {
-  final String icon, title;
+  String icon, title;
 
-  const Category({required this.icon, required this.title});
+  Category(this.icon, this.title);
 }
 
-const List<Category> demo_categories = [
-  Category(icon: "assets/icons/Modiste.png", title: "Modiste"),
-  Category(icon: "assets/icons/Tailor.png", title: "Tailor"),
-  Category(icon: "assets/icons/Konveksi.png", title: "Brand Owner"),
-  Category(icon: "assets/icons/Repair.png", title: "Repair"),
-  Category(icon: "assets/icons/Shops.png", title: "Shops"),
-  Category(icon: "assets/icons/Design.png", title: "Design"),
+List<Category> listCategory = [
+  Category("assets/icons/Modiste.png", "Modiste"),
+  Category("assets/icons/Tailor.png", "Tailor"),
+  Category("assets/icons/Konveksi.png", "Brand Owner"),
+  Category("assets/icons/Repair.png", "Repair"),
+  Category("assets/icons/Shops.png", "Shops"),
+  Category("assets/icons/Design.png", "Design"),
 ];
