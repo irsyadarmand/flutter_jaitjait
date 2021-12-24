@@ -47,7 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     //buat avatar tailor
-
                     Container(
                       padding: EdgeInsets.only(left: 10, right: 10),
                       height: 90,
@@ -145,11 +144,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.only(
                         left: 10,
                         right: 10,
+                        bottom: 20,
                       ),
-                      alignment: Alignment.topCenter,
+                      width: double.infinity,
                       height: 275,
+                      // alignment: Alignment.topCenter,
                       child: ListView.builder(
-                        itemCount: listTitles.length,
+                        itemCount: 3,
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {},
@@ -171,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget getListTailor(RecommendedTailor item) {
     return Material(
       elevation: 0,
-      shape: CircleBorder(),
+      shape: const CircleBorder(),
       clipBehavior: Clip.hardEdge,
       color: Colors.transparent,
       child: Ink.image(
@@ -222,10 +223,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget getListArticle(ListArticle art) {
     return Card(
+      clipBehavior: Clip.antiAlias,
       elevation: 0,
       margin: const EdgeInsets.only(bottom: 20),
+      color: Color(0xFFFFF7FB),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Row(
           children: [
             Expanded(
@@ -262,21 +268,27 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  Text(
-                    art.newsTitle,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: textColor,
-                      fontWeight: FontWeight.w600,
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Text(
+                      art.newsTitle,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: textColor,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 5),
-                  Text(
-                    art.subTitle,
-                    style: const TextStyle(
-                      fontSize: 9,
-                      color: Colors.black38,
-                      fontWeight: FontWeight.w500,
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Text(
+                      art.subTitle,
+                      style: const TextStyle(
+                        fontSize: 9,
+                        color: Colors.black38,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],
