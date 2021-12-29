@@ -14,24 +14,36 @@ class SignInScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: defaultPadding * 2),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: defaultPadding),
-                    child: SingleChildScrollView(
-                      child: SizedBox(
-                        height: 250,
-                        child: Image.asset(
-                          "assets/icons/logo_jaitjait.png",
-                          fit: BoxFit.contain,
-                        ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                      bottom: defaultPadding,
+                      left: defaultPadding,
+                      right: defaultPadding),
+                  child: SingleChildScrollView(
+                    child: SizedBox(
+                      height: 250,
+                      child: Image.asset(
+                        "assets/icons/logo_jaitjait.png",
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ),
-                  Row(
+                ),
+                Container(
+                  width: double.infinity,
+                  color: bgstyleColor,
+                  padding: const EdgeInsets.only(
+                    left: defaultPadding * 2,
+                    right: defaultPadding * 2,
+                    top: 10,
+                    bottom: 10,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Welcome back!",
@@ -39,31 +51,30 @@ class SignInScreen extends StatelessWidget {
                             .textTheme
                             .headline5!
                             .copyWith(fontWeight: FontWeight.w500),
+                        textAlign: TextAlign.left,
                       ),
+                      const SizedBox(height: 5),
+                      const Text("Sign in to continue"),
                     ],
                   ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: defaultPadding),
-                        child: Text(
-                          "Sign in to continue",
-                          style: Theme.of(context)
-                              .textTheme
-                              .subtitle2!
-                              .copyWith(fontWeight: FontWeight.normal),
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: defaultPadding),
-                  SignInForm(
+                ),
+                const SizedBox(height: defaultPadding),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: defaultPadding * 2),
+                  child: SignInForm(
                     formKey: _formKey,
                   ),
-                  Row(
+                ),
+                Container(
+                  width: double.infinity,
+                  child: Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: defaultPadding * 2),
+                        padding: const EdgeInsets.only(
+                          top: defaultPadding * 2,
+                          left: defaultPadding * 2,
+                          right: defaultPadding * 2,
+                        ),
                         child: SizedBox(
                           width: 345,
                           child: Text(
@@ -77,11 +88,14 @@ class SignInScreen extends StatelessWidget {
                                     color: Colors.black45),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
-                  const SizedBox(height: defaultPadding),
-                  SizedBox(
+                ),
+                const SizedBox(height: defaultPadding),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: defaultPadding * 2),
+                  child: SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
@@ -98,21 +112,21 @@ class SignInScreen extends StatelessWidget {
                       child: Text("Sign In"),
                     ),
                   ),
-                  TextButton(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SignUpScreen(),
-                      ),
-                    ),
-                    child: const Text(
-                      "Create an Account",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: minorColor),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignUpScreen(),
                     ),
                   ),
-                ],
-              ),
+                  child: const Text(
+                    "Create an Account",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: minorColor),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

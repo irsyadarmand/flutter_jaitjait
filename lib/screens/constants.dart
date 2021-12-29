@@ -5,6 +5,7 @@ const primaryColor = Color(0xFF9E3668);
 const textColor = Color(0xF2393938);
 const backgroundColor = Color(0xFFE5E5E5);
 const minorColor = Color(0xFFFFAB48);
+const bgstyleColor = Color(0xFFFFF7FB);
 
 const defaultPadding = 16.0;
 

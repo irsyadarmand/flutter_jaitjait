@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_jaitjait/models/Article.dart';
 import 'package:flutter_jaitjait/models/Category.dart';
 import 'package:flutter_jaitjait/models/RecommendTailor.dart';
+import 'package:flutter_jaitjait/screens/article/article_screen.dart';
 import 'package:flutter_jaitjait/screens/constants.dart';
-import 'package:flutter_jaitjait/screens/home/components/appbar.dart';
+import 'package:flutter_jaitjait/screens/home/components/home_appbar.dart';
 
-import 'package:flutter_svg/flutter_svg.dart';
+import '../article/components/article_listwidget_vertical.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -123,7 +124,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               Row(
                                 children: [
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ArticleScreen(),
+                                      ),
+                                    ),
                                     child: const Text(
                                       "See all",
                                       style: TextStyle(
@@ -147,14 +154,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         bottom: 20,
                       ),
                       width: double.infinity,
-                      height: 275,
+                      height: 390,
                       // alignment: Alignment.topCenter,
                       child: ListView.builder(
                         itemCount: 3,
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {},
-                            child: getListArticle(listTitles[index]),
+                            child: getListArticle1(listTitles[index]),
                           );
                         },
                       ),
@@ -217,104 +224,6 @@ class _HomeScreenState extends State<HomeScreen> {
           // const Padding(padding: EdgeInsets.all(1)),
           Text(cat.title, style: titleStyleLighterBlack),
         ],
-      ),
-    );
-  }
-
-  Widget getListArticle(ListArticle art) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      elevation: 0,
-      margin: const EdgeInsets.only(bottom: 20),
-      color: Color(0xFFFFF7FB),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        art.author,
-                        style: const TextStyle(
-                            fontSize: 12,
-                            color: primaryColor,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      const SizedBox(width: 5),
-                      Text(
-                        art.timeRead,
-                        style: const TextStyle(
-                          fontSize: 9,
-                          color: Colors.black38,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        art.date,
-                        style: const TextStyle(
-                          fontSize: 9,
-                          color: Colors.black38,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Text(
-                      art.newsTitle,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: textColor,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Text(
-                      art.subTitle,
-                      style: const TextStyle(
-                        fontSize: 9,
-                        color: Colors.black38,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 10),
-            Container(
-              alignment: Alignment.centerRight,
-              width: 80,
-              height: 80,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(art.imgUrl),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.transparent,
-                    blurRadius: 7,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
