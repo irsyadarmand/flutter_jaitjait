@@ -43,7 +43,7 @@ class TopArticles extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.only(top: 10),
             width: 60,
             decoration: const BoxDecoration(
               border: Border(
@@ -53,7 +53,7 @@ class TopArticles extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Container(
-            padding: EdgeInsets.only(bottom: 60),
+            padding: const EdgeInsets.only(bottom: 60),
             height: 500,
             child: ListView.builder(
               scrollDirection: Axis.vertical,

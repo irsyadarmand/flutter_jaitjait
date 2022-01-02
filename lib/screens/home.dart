@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         onTap: (index) {
           _pageController.animateToPage(index,
-              duration: Duration(milliseconds: 300), curve: Curves.ease);
+              duration: const Duration(milliseconds: 300), curve: Curves.ease);
         },
       ),
       // body: Center(

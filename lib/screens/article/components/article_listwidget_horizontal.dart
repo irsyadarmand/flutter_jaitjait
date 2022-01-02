@@ -15,7 +15,7 @@ Widget getListArticle2(ListArticle arti) {
         color: bgstyleColor,
       ),
       color: bgstyleColor,
-      borderRadius: BorderRadius.all(Radius.circular(12)),
+      borderRadius: const BorderRadius.all(Radius.circular(12)),
     ),
     width: 250,
     margin: const EdgeInsets.only(right: 15),
@@ -74,6 +74,7 @@ Widget getListArticle2(ListArticle arti) {
               fontSize: 18,
               color: textColor,
               fontWeight: FontWeight.w600,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ),
@@ -86,14 +87,17 @@ Widget getListArticle2(ListArticle arti) {
               fontSize: 9,
               color: Colors.black38,
               fontWeight: FontWeight.w500,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ),
         const SizedBox(height: 10),
         Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Padding(
-              padding: EdgeInsets.only(left: 10, right: 10),
+              padding: EdgeInsets.only(left: 5, right: 10),
             ),
             LikeButton(
               size: size,
@@ -122,14 +126,17 @@ Widget getListArticle2(ListArticle arti) {
                 );
               },
             ),
-            const SizedBox(width: 100),
-            Text(
-              arti.comments,
-              style: const TextStyle(
-                fontSize: 12,
-                color: Colors.black38,
-                fontWeight: FontWeight.normal,
+            const SizedBox(width: 85),
+            TextButton(
+              child: Text(
+                arti.comments,
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.black38,
+                  fontWeight: FontWeight.normal,
+                ),
               ),
+              onPressed: () {},
             ),
           ],
         ),
